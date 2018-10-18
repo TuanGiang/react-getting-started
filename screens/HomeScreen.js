@@ -27,7 +27,7 @@ export default class HomeScreen extends React.Component {
     try {
       const phone = await AsyncStorage.getItem('Phone');
       if (phone !== null) {
-        alert('Goto User info');
+          this.props.navigation.navigate('ProviderHome');
       } else {
         alert('Bạn phải đăng nhập trước');
       }
