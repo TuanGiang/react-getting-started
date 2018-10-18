@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import call from 'react-native-phone-call'
 import {StyleSheet, Image, View, Text, TextInput,TouchableOpacity} from 'react-native';
-import { ShareApi } from 'react-native-fbsdk';
+import { ShareApi,ShareDialog } from 'react-native-fbsdk';
 
 const args = {
   number: '0985773486', // String value with the number to call
@@ -18,22 +18,30 @@ export default class BottomBarView extends React.Component {
   callPhone(){
       call(args).catch(console.error);
   }
-
-  shareFacebook(){
-    ShareApi.canShare(this.state.shareLinkContent).then(
+  shareLinkWithShareDialog() {
     var tmp = this;
-    function(canShare) {
-      if (canShare) {
-        return ShareApi.share(tmp.state.shareLinkContent, '/me', 'Some message.');
+    ShareDialog.canShow(shareLinkContent).then(
+      function(canShow) {
+        if (canShow) {
+          return ShareDialog.show(shareLinkContent);
+        }
       }
-    }).then(
+    ).then(
       function(result) {
-        console.log('Share with ShareApi success.');
+        if (result.isCancelled) {
+          console.log('Share cancelled');
+        } else {
+          console.log('Share success with postId: '
+            + result.postId);
+        }
       },
       function(error) {
-        console.log('Share with ShareApi failed with error: ' + error);
+        console.log('Share fail with error: ' + error);
       }
     );
+  }
+  shareFacebook(){
+      this.shareLinkWithShareDialog();
   }
 
 
