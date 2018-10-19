@@ -7,6 +7,7 @@ import BookingScreen from '../screens/BookingScreen.js';
 import ProviderScreen from '../screens/ProviderScreen.js';
 import ProviderHomeScreen from '../screens/ProviderHomeScreen.js';
 import ProviderHistory from '../screens/HistoryScreen.js'
+import AddProductScreen from '../screens/AddProductScreen.js'
 const nav = createStackNavigator({
   Home: { screen: HomeScreen },
   Category: { screen: CategoryScreen },
@@ -15,6 +16,7 @@ const nav = createStackNavigator({
   Provider: { screen: ProviderScreen },
   ProviderHome: { screen: ProviderHomeScreen },
   ProviderHistory: { screen: ProviderHistory },
+  AddProduct: { screen: AddProductScreen },
   },
   {
     initialRouteName: 'Home',

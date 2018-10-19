@@ -29,7 +29,7 @@ export default class ProviderHomeScreen extends React.Component {
  }
 
  _handleProvidePress = () => {
-
+this.props.navigation.navigate('AddProduct');
  }
 
  getCurrentLogin = async ()  => {
